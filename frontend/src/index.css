@@ -139,6 +139,14 @@ p{
 h4{
   color: #555;
   font-weight: normal;
+  width: 225px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .col-4{
@@ -151,6 +159,7 @@ h4{
 
 .col-4:hover{
   transform: translateY(-5px);
+  color: #000;
 }
 
 .col-4 img {
