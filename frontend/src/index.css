@@ -404,6 +404,14 @@ input:focus{
   margin-left: 10px;
 }
 
+.success{
+  color: #20a020;
+}
+
+.error{
+  color: #a02020;
+}
+
 /* -- Page Cart --*/
 .cart-page{
   margin: 80px auto;
