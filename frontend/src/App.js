@@ -54,9 +54,9 @@ function App() {
                 </div>
             </div>
             
-            <Route path = "/product/:id" component={ProductScreen} exact></Route>
             <Route path = "/" component={HomeScreen} exact></Route>
-            
+            <Route path = "/product/:id" component={ProductScreen} exact></Route>
+
             <div className="offer">
                 <div className="small-container">
                     <div className="row">
@@ -163,7 +163,7 @@ function App() {
                             
                         </div>
                     </div>
-                    <hr></hr>
+                    <hr/>
                     <div className="create">
                         <p>Design By Trương Dương Khang - MSSV 1811546141</p>
                     </div>
