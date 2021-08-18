@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.java.backend.exception.ResourceNotFoundException;
-import com.java.backend.model.Customer;
-import com.java.backend.repository.CustomerRepository;
+import com.java.backend.model.User;
+import com.java.backend.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,52 +21,53 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/")
-public class CustomerController {
+public class UserController {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private UserRepository userRepository;
 
     // danh sách khách hàng
-    @GetMapping("/customers")
-    public List<Customer> getAllCustomer() {
-        return customerRepository.findAll();
+    @GetMapping("/users")
+    public List<User> getAllUser() {
+        return userRepository.findAll();
     }
 
     // thêm khách hàng
-    @PostMapping("/customers")
-    public Customer createCustomer(@RequestBody Customer customer){
-        return customerRepository.save(customer);
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user){
+        return userRepository.save(user);
     }
 
     // tìm khách hàng bằng id
-    @GetMapping("/customers/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id){
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
         // tìm khách hàng bằng id nếu không có trả về thông báo lỗi
-        Customer customer = customerRepository.findById(id)
+        User user = userRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng có mã: " + id + " !!!"));
-        return ResponseEntity.ok(customer);
+        return ResponseEntity.ok(user);
     }
 
     // cập nhật thông tin khách hàng
-    @PutMapping("/customers/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customerDetail){
-        Customer customer = customerRepository.findById(id)
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetail){
+        User user = userRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng có mã: " + id + " !!!"));
-        customer.setName(customerDetail.getName());
-        customer.setAddress(customerDetail.getAddress());
-        customer.setEmail(customerDetail.getEmail());
-        customer.setPhone(customerDetail.getPhone());
+        user.setName(userDetail.getName());
+        user.setEmail(userDetail.getEmail());
+        user.setPassword(userDetail.getPassword());
+        user.setIs_admin(userDetail.getIs_admin());
+        user.setIs_seller(userDetail.getIs_seller());
 
-        Customer updatedCustomer = customerRepository.save(customer);
-        return ResponseEntity.ok(updatedCustomer);
+        User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(updatedUser);
     }
 
     // xóa thông tin khách hàng
-    @DeleteMapping("/customers/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteCustomer(@PathVariable Long id){
-        Customer customer = customerRepository.findById(id)
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
+        User user = userRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng có mã: " + id + " !!!"));
-        customerRepository.delete(customer);
+        userRepository.delete(user);
         Map<String, Boolean> response = new HashMap<>();
         response.put("Deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
