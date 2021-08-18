@@ -16,16 +16,16 @@ public class ShippingAddress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    @Column(columnDefinition = "nvarchar(200) not null")
+    @Column(columnDefinition = "nvarchar(255) not null")
 	private String fullname;
 
-    @Column(columnDefinition = "nvarchar(200) not null")
+    @Column(columnDefinition = "nvarchar(255) not null")
 	private String address;
 
     @Column(columnDefinition = "nvarchar(255) not null")
 	private String city;
 
-    @Column(columnDefinition = "nvarchar(200) not null")
+    @Column(columnDefinition = "nvarchar(255) not null")
 	private String country;
 
     @Column(columnDefinition = "nvarchar(10) not null")
