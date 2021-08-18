@@ -1,6 +1,5 @@
 package com.java.backend.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +64,7 @@ public class PaymentMethodController {
             .orElseThrow(() -> new ResourceNotFoundException("Không có phương thức thanh toán có mã: " + id + " !!!"));
         paymentMethodRepository.delete(paymentMethod);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Deleted", Boolean.TRUE);
+        response.put("Đã xóa", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 }

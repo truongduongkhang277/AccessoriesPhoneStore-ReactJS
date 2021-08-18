@@ -65,7 +65,7 @@ public class CategoryController {
             .orElseThrow(() -> new ResourceNotFoundException("Không có loại sản phẩm có mã: " + id + " !!!"));
             categoryRepository.delete(category);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Deleted", Boolean.TRUE);
+        response.put("Đã xóa", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 

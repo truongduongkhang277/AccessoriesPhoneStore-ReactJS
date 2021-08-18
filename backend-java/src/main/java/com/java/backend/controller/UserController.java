@@ -69,7 +69,7 @@ public class UserController {
             .orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng có mã: " + id + " !!!"));
         userRepository.delete(user);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Deleted", Boolean.TRUE);
+        response.put("Đã xóa", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 

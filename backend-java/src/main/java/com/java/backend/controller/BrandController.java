@@ -65,7 +65,7 @@ public class BrandController {
             .orElseThrow(() -> new ResourceNotFoundException("Không có thương hiệu có mã: " + id + " !!!"));
             brandRepository.delete(brand);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Deleted", Boolean.TRUE);
+        response.put("Đã xóa", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 
