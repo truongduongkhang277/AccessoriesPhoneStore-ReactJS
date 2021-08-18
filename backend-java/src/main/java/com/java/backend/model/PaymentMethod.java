@@ -8,9 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "brand")
-public class Brand {
-    
+@Table(name = "payment_method")
+public class PaymentMethod {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -18,9 +17,9 @@ public class Brand {
     @Column(columnDefinition = "nvarchar(255) not null")
 	private String name;
 
-    public Brand() {}
+    public PaymentMethod() {}
 
-    public Brand(long id, String name) {
+    public PaymentMethod(long id, String name) {
         super();
         this.id = id;
         this.name = name;
@@ -41,5 +40,4 @@ public class Brand {
     public void setName(String name){
         this.name = name;
     }
-
 }
