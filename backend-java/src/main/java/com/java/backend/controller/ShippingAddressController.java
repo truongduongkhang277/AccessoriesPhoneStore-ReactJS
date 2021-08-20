@@ -55,7 +55,7 @@ public class ShippingAddressController {
         shippingAddress.setAddress(ShippingAddressDetail.getAddress());
         shippingAddress.setCity(ShippingAddressDetail.getCity());
         shippingAddress.setCountry(ShippingAddressDetail.getCountry());
-        shippingAddress.setPostal_code(ShippingAddressDetail.getPostal_code());
+        shippingAddress.setPostalCode(ShippingAddressDetail.getPostalCode());
 
         ShippingAddress updatedShippingAddress = shippingAddressRepository.save(shippingAddress);
         return ResponseEntity.ok(updatedShippingAddress);

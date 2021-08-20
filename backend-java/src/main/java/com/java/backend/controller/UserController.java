@@ -55,8 +55,8 @@ public class UserController {
         user.setName(userDetail.getName());
         user.setEmail(userDetail.getEmail());
         user.setPassword(userDetail.getPassword());
-        user.setIs_admin(userDetail.getIs_admin());
-        user.setIs_seller(userDetail.getIs_seller());
+        user.setIsAdmin(userDetail.getIsAdmin());
+        user.setIsSeller(userDetail.getIsSeller());
 
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);

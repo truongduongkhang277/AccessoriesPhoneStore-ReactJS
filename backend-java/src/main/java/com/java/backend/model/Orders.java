@@ -2,6 +2,7 @@ package com.java.backend.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "orders")
@@ -22,59 +22,75 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    @Column(nullable = false)
-	private int order_item_id;
+    // @Column(nullable = false)
+	// private int order_item_id;
 
-    @Column(nullable = false)
-	private int shipping_address_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_item_id")
+    private OrderItems orderItems;
 
-    @Column(nullable = false)
-	private int payment_method_id;
+    // @Column(nullable = false)
+	// private int shipping_address_id;
 
-    @Column(nullable = false)
-	private int user_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shipping_address_id")
+    private ShippingAddress shippingAddress;
+
+    // @Column(nullable = false)
+	// private int payment_method_id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_method_id")
+    private PaymentMethod paymentMethod;
+
+    // @Column(nullable = false)
+	// private int user_id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 	@Column(nullable = false)
-	private double item_price;
+	private double itemPrice;
 
     @Column(nullable = false)
-	private double shipping_price;
+	private double shippingPrice;
 
     @Column(nullable = false)
-	private double tax_price;
+	private double taxPrice;
 
     @Column(nullable = false)
-	private double total_price;
+	private double totalPrice;
 
     @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
-    private boolean is_paid;
+    private boolean isPaid;
 
 	@Temporal(TemporalType.DATE)    
-	private Date paid_at;
+	private Date paidAt;
 
     @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
-    private boolean is_delivered;
+    private boolean isDelivered;
 
     @Temporal(TemporalType.DATE)
-	private Date delivered_at;
+	private Date deliveredAt;
 
     public Orders() {}
 
-    public Orders(long id, int order_item_id, int shipping_address_id, int payment_method_id, int user_id, double item_price, double shipping_price, double tax_price, double total_price, boolean is_paid, Date paid_at, boolean is_delivered, Date delivered_at ) {
+    public Orders(long id, OrderItems orderItems, ShippingAddress shippingAddress, PaymentMethod paymentMethod, User user, double itemPrice, double shippingPrice, double taxPrice, double totalPrice, boolean isPaid, Date paidAt, boolean isDelivered, Date deliveredAt ) {
         super();
         this.id = id;
-        this.order_item_id = order_item_id;
-        this.shipping_address_id = shipping_address_id;
-        this.payment_method_id = payment_method_id;
-        this.user_id = user_id;
-        this.item_price = item_price;
-        this.shipping_price = shipping_price;
-        this.tax_price = tax_price;
-        this.total_price = total_price;
-        this.is_paid = is_paid;
-        this.paid_at = paid_at;
-        this.is_delivered = is_delivered;
-        this.delivered_at = delivered_at;
+        this.orderItems = orderItems;
+        this.shippingAddress = shippingAddress;
+        this.paymentMethod = paymentMethod;
+        this.user = user;
+        this.itemPrice = itemPrice;
+        this.shippingPrice = shippingPrice;
+        this.taxPrice = taxPrice;
+        this.totalPrice = totalPrice;
+        this.isPaid = isPaid;
+        this.paidAt = paidAt;
+        this.isDelivered = isDelivered;
+        this.deliveredAt = deliveredAt;
     }
 
     public long getId(){
@@ -85,97 +101,129 @@ public class Orders {
         this.id = id;
     }
 
-    public int getOrder_item_id(){
-        return order_item_id;
+    // public int getOrder_item_id(){
+    //     return order_item_id;
+    // }
+
+    // public void setOrder_item_id(int order_item_id){
+    //     this.order_item_id = order_item_id;
+    // }
+
+    public OrderItems getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrder_item_id(int order_item_id){
-        this.order_item_id = order_item_id;
+    public void setOrderItems(OrderItems orderItems) {
+        this.orderItems = orderItems;
     }
 
-    public int getShipping_address_id(){
-        return shipping_address_id;
+    // public int getShipping_address_id(){
+    //     return shipping_address_id;
+    // }
+
+    // public void setShipping_address_id(int shipping_address_id){
+    //     this.shipping_address_id = shipping_address_id;
+    // }
+
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void setShipping_address_id(int shipping_address_id){
-        this.shipping_address_id = shipping_address_id;
+    public void setShippingAddress(ShippingAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
-    public int getPayment_method_id(){
-        return payment_method_id;
+    // public int getPayment_method_id(){
+    //     return payment_method_id;
+    // }
+
+    // public void setPayment_method_id(int payment_method_id){
+    //     this.payment_method_id = payment_method_id;
+    // }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setPayment_method_id(int payment_method_id){
-        this.payment_method_id = payment_method_id;
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public int getUser_id(){
-        return user_id;
+    // public int getUser_id(){
+    //     return user_id;
+    // }
+
+    // public void setUser_id(int user_id){
+    //     this.user_id = user_id;
+    // }
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(int user_id){
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public double getItem_price(){
-        return item_price;
+    public double getItemPrice(){
+        return itemPrice;
     }
 
-    public void setItem_price(double item_price){
-        this.item_price = item_price;
+    public void setItemPrice(double itemPrice){
+        this.itemPrice = itemPrice;
     }
 
-    public double getShipping_price(){
-        return shipping_price;
+    public double getShippingPrice(){
+        return shippingPrice;
     }
 
-    public void setShipping_price(double shipping_price){
-        this.shipping_price = shipping_price;
+    public void setShippingPrice(double shippingPrice){
+        this.shippingPrice = shippingPrice;
     }
-    public double getTax_price(){
-        return tax_price;
-    }
-
-    public void setTax_price(double tax_price){
-        this.tax_price = tax_price;
-    }
-    public double getTotal_price(){
-        return total_price;
+    public double getTaxPrice(){
+        return taxPrice;
     }
 
-    public void setTotal_price(double total_price){
-        this.total_price = total_price;
+    public void setTaxPrice(double taxPrice){
+        this.taxPrice = taxPrice;
+    }
+    public double getTotalPrice(){
+        return totalPrice;
     }
 
-    public boolean getIs_paid(){
-        return is_paid;
+    public void setTotalPrice(double totalPrice){
+        this.totalPrice = totalPrice;
     }
 
-    public void setIs_paid(boolean is_paid){
-        this.is_paid = is_paid;
+    public boolean getIsPaid(){
+        return isPaid;
     }
 
-    public Date getPaid_at(){
-        return paid_at;
+    public void setIsPaid(boolean isPaid){
+        this.isPaid = isPaid;
     }
 
-    public void setPaid_at(Date paid_at){
-        this.paid_at = paid_at;
+    public Date getPaidAt(){
+        return paidAt;
     }
 
-    public boolean getIs_delivered(){
-        return is_delivered;
+    public void setPaidAt(Date paidAt){
+        this.paidAt = paidAt;
     }
 
-    public void setIs_delivered(boolean is_delivered){
-        this.is_delivered = is_delivered;
+    public boolean getIsDelivered(){
+        return isDelivered;
     }
 
-    public Date getDelivered_at(){
-        return delivered_at;
+    public void setIsDelivered(boolean isDelivered){
+        this.isDelivered = isDelivered;
     }
 
-    public void setDelivered_at(Date delivered_at){
-        this.delivered_at = delivered_at;
+    public Date getDeliveredAt(){
+        return deliveredAt;
+    }
+
+    public void setDeliveredAt(Date deliveredAt){
+        this.deliveredAt = deliveredAt;
     }
 }

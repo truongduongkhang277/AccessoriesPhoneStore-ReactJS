@@ -53,9 +53,9 @@ public class OrderItemsController {
             .orElseThrow(() -> new ResourceNotFoundException("Không có đơn đặt hàng có mã: " + id + " !!!"));
         orderItems.setName(orderItemsDetail.getName());
         orderItems.setQuantity(orderItemsDetail.getQuantity());
-        orderItems.setImage(orderItemsDetail.getImage());
-        orderItems.setPrice(orderItemsDetail.getPrice());
-        orderItems.setProduct_id(orderItemsDetail.getProduct_id());
+        //orderItems.setImage(orderItemsDetail.getImage());
+        //orderItems.setPrice(orderItemsDetail.getPrice());
+        orderItems.setProduct(orderItemsDetail.getProduct());
 
         OrderItems updatedOrderItems = orderItemsRepository.save(orderItems);
         return ResponseEntity.ok(updatedOrderItems);

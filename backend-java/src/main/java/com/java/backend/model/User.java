@@ -25,22 +25,22 @@ public class User {
     @Column(columnDefinition = "nvarchar(255) not null")
 	private String password;
 
-    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
-    private boolean is_admin;
+    @Column(name = "is_admin", nullable = false, columnDefinition = "TINYINT", length = 1)
+    private boolean isAdmin;
 
-    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
-    private boolean is_seller;
+    @Column(name = "is_seller", nullable = false, columnDefinition = "TINYINT", length = 1)
+    private boolean isSeller;
 
     public User(){}
 
-    public User(long id, String name, String email, String password, boolean is_admin, boolean is_seller){
+    public User(long id, String name, String email, String password, boolean isAdmin, boolean isSeller){
         super();
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.is_admin = is_admin;
-        this.is_seller = is_seller;
+        this.isAdmin = isAdmin;
+        this.isSeller = isSeller;
     }
 
     public long getId(){
@@ -75,19 +75,19 @@ public class User {
         this.password = password;
     }
 
-    public boolean getIs_admin(){
-        return is_admin;
+    public boolean getIsAdmin(){
+        return isAdmin;
     }
 
-    public void setIs_admin(boolean is_admin){
-        this.is_admin = is_admin;
+    public void setIsAdmin(boolean isAdmin){
+        this.isAdmin = isAdmin;
     }
 
-    public boolean getIs_seller(){
-        return is_seller;
+    public boolean getIsSeller(){
+        return isSeller;
     }
 
-    public void setIs_seller(boolean is_seller){
-        this.is_seller = is_seller;
+    public void setIsSeller(boolean isSeller){
+        this.isSeller = isSeller;
     }
 }

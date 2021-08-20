@@ -55,12 +55,12 @@ public class ProductController {
         product.setCost(productDetail.getCost());
         product.setPrice(productDetail.getPrice());
         product.setImage(productDetail.getImage());
-        product.setCount_in_stock(productDetail.getCount_in_stock());
+        product.setCountInStock(productDetail.getCountInStock());
         product.setRating(productDetail.getRating());
-        product.setNum_reviews(productDetail.getNum_reviews());
+        product.setNumReviews(productDetail.getNumReviews());
         product.setDescription(productDetail.getDescription());
-        product.setBrand_id(productDetail.getBrand_id());
-        product.setCategory_id(productDetail.getCategory_id());
+        product.setBrand(productDetail.getBrand());
+        product.setCategory(productDetail.getCategory());
 
         Product updatedProduct = productRepository.save(product);
         return ResponseEntity.ok(updatedProduct);

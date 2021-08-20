@@ -28,19 +28,19 @@ public class ShippingAddress {
     @Column(columnDefinition = "nvarchar(255) not null")
 	private String country;
 
-    @Column(columnDefinition = "nvarchar(10) not null")
-	private String postal_code;
+    @Column(name = "postal_code", columnDefinition = "nvarchar(10) not null")
+	private String postalCode;
 
     public ShippingAddress(){}
 
-    public ShippingAddress(long id, String fullname, String address, String city, String country, String postal_code){
+    public ShippingAddress(long id, String fullname, String address, String city, String country, String postalCode){
         super();
         this.id = id;
         this.fullname = fullname;
         this.address = address;
         this.city = city;
         this.country = country;
-        this.postal_code = postal_code;
+        this.postalCode = postalCode;
     }
 
     public long getId(){
@@ -83,11 +83,11 @@ public class ShippingAddress {
         this.country = country;
     }
     
-    public String getPostal_code(){
-        return postal_code;
+    public String getPostalCode(){
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code){
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode){
+        this.postalCode = postalCode;
     }
 }

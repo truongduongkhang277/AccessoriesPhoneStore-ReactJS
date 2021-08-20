@@ -1,5 +1,6 @@
 package com.java.backend.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,25 +23,29 @@ public class OrderItems {
     @Column(nullable = false)
 	private int quantity;
 
-    @Column(length = 255)
-	private String image;
+    // @Column(length = 255)
+	// private String image;
 
-	@Column(nullable = false)
-	private double price;
+	// @Column(nullable = false)
+	// private double price;
 
-	@Column(nullable = false)
-	private int product_id;
+	// @Column(nullable = false)
+	// private int product_id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public OrderItems() {}
 
-    public OrderItems(long id, String name, int quantity, String image, double price, int product_id) {
+    public OrderItems(long id, String name, int quantity, Product product) {
         super();
         this.id = id;
         this.name = name;
         this.quantity = quantity;
-        this.image = image;
-        this.price = price;
-        this.product_id = product_id;
+        //this.image = image;
+        //this.price = price;
+        this.product = product;
     }
 
     public long getId(){
@@ -67,27 +72,35 @@ public class OrderItems {
         this.quantity = quantity;
     }
 
-    public String getImage(){
-        return image;
+    // public String getImage(){
+    //     return image;
+    // }
+
+    // public void setImage(String image){
+    //     this.image = image;
+    // }
+
+    // public double getPrice(){
+    //     return price;
+    // }
+
+    // public void setPrice(double price){
+    //     this.price = price;
+    // }
+
+    // public int getProduct_id(){
+    //     return product_id;
+    // }
+
+    // public void setProduct_id(int product_id){
+    //     this.product_id = product_id;
+    // }
+
+    public Product getProduct() {
+        return product;
     }
 
-    public void setImage(String image){
-        this.image = image;
-    }
-
-    public double getPrice(){
-        return price;
-    }
-
-    public void setPrice(double price){
-        this.price = price;
-    }
-
-    public int getProduct_id(){
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id){
-        this.product_id = product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

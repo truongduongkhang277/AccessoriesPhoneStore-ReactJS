@@ -51,18 +51,18 @@ public class OrdersController {
     public ResponseEntity<Orders> updateOrders(@PathVariable Long id, @RequestBody Orders ordersDetail){
         Orders orders = ordersRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Không có đơn hàng có mã: " + id + " !!!"));
-        orders.setOrder_item_id(ordersDetail.getOrder_item_id());
-        orders.setShipping_address_id(ordersDetail.getShipping_address_id());
-        orders.setPayment_method_id(ordersDetail.getPayment_method_id());
-        orders.setUser_id(ordersDetail.getUser_id());
-        orders.setItem_price(ordersDetail.getItem_price());
-        orders.setShipping_price(ordersDetail.getShipping_price());
-        orders.setTax_price(ordersDetail.getTax_price());
-        orders.setTotal_price(ordersDetail.getTotal_price());
-        orders.setIs_paid(ordersDetail.getIs_paid());
-        orders.setPaid_at(ordersDetail.getPaid_at());
-        orders.setIs_delivered(ordersDetail.getIs_delivered());
-        orders.setDelivered_at(ordersDetail.getDelivered_at());
+        orders.setOrderItems(ordersDetail.getOrderItems());
+        orders.setShippingAddress(ordersDetail.getShippingAddress());
+        orders.setPaymentMethod(ordersDetail.getPaymentMethod());
+        orders.setUser(ordersDetail.getUser());
+        orders.setItemPrice(ordersDetail.getItemPrice());
+        orders.setShippingPrice(ordersDetail.getShippingPrice());
+        orders.setTaxPrice(ordersDetail.getTaxPrice());
+        orders.setTotalPrice(ordersDetail.getTotalPrice());
+        orders.setIsPaid(ordersDetail.getIsPaid());
+        orders.setPaidAt(ordersDetail.getPaidAt());
+        orders.setIsDelivered(ordersDetail.getIsDelivered());
+        orders.setDeliveredAt(ordersDetail.getDeliveredAt());
 
         Orders updatedOrders = ordersRepository.save(orders);
         return ResponseEntity.ok(updatedOrders);

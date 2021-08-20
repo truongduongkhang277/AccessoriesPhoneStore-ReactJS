@@ -1,7 +1,6 @@
 package com.java.backend.model;
 
-import java.sql.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "product")
@@ -32,39 +29,47 @@ public class Product {
     @Column(columnDefinition = "nvarchar(255) not null")
 	private String image;
 
-    @Column(nullable = false)
-	private int count_in_stock;
+    @Column(name = "count_in_stock", nullable = false)
+	private int countInStock;
 
     @Column(nullable = false)
 	private double rating;
 
-    @Column(nullable = false)
-	private int num_reviews;
+    @Column(name = "num_reviews", nullable = false)
+	private int numReviews;
 
     @Column(columnDefinition = "nvarchar(255) not null")
 	private String description;
 
-    @Column(nullable = false)
-	private int brand_id;
+    // @Column(nullable = false)
+	// private int brand_id;
 
-    @Column(nullable = false)
-	private int category_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
+    //  @Column(nullable = false)
+	//  private int category_id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Product() {}
 
-    public Product(long id, String name, double cost, double price, String image, int count_in_stock, double rating, int num_reviews, String description, int brand_id, int category_id ) {
+    public Product(long id, String name, double cost, double price, String image, int countInStock, double rating, int numReviews, String description, Brand brand, Category category ) {
         super();
         this.id = id;
         this.name = name;
         this.cost = cost;
         this. price = price;
         this.image = image;
-        this.count_in_stock = count_in_stock;
+        this.countInStock = countInStock;
         this.rating = rating;
-        this.num_reviews = num_reviews;
+        this.numReviews = numReviews;
         this.description = description;
-        this.brand_id = brand_id;
-        this.category_id = category_id;
+        this.brand = brand;
+        this.category = category;
     }
 
     public long getId(){
@@ -107,12 +112,12 @@ public class Product {
         this.image = image;
     }
 
-    public int getCount_in_stock(){
-        return count_in_stock;
+    public int getCountInStock(){
+        return countInStock;
     }
 
-    public void setCount_in_stock(int count_in_stock){
-        this.count_in_stock = count_in_stock;
+    public void setCountInStock(int countInStock){
+        this.countInStock = countInStock;
     }
 
     public double getRating(){
@@ -122,12 +127,12 @@ public class Product {
     public void setRating(double rating){
         this.rating = rating;
     }
-    public int getNum_reviews(){
-        return num_reviews;
+    public int getNumReviews(){
+        return numReviews;
     }
 
-    public void setNum_reviews(int num_reviews){
-        this.num_reviews = num_reviews;
+    public void setNumReviews(int numReviews){
+        this.numReviews = numReviews;
     }
 
     public String getDescription(){
@@ -138,20 +143,36 @@ public class Product {
         this.description = description;
     }
 
-    public int getBrand_id(){
-        return brand_id;
+    // public int getBrand_id(){
+    //     return brand_id;
+    // }
+
+    // public void setBrand_id(int brand_id){
+    //     this.brand_id = brand_id;
+    // }
+
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setBrand_id(int brand_id){
-        this.brand_id = brand_id;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public int getCategory_id(){
-        return category_id;
+    // public int getCategory_id(){
+    //     return category_id;
+    // }
+
+    // public void setCategory_id(int category_id){
+    //     this.category_id = category_id;
+    // }
+
+    public Category getCategory() {
+       return category;
     }
 
-    public void setCategory_id(int category_id){
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+       this.category = category;
     }
     
 }
