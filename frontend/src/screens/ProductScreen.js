@@ -1,12 +1,15 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import Rating from '../components/Rating';
 import {Link} from 'react-router-dom';
-import data from '../data'
+import data from './../data';
 
 export default function ProductScreen(props) {
     
+    
+
     // lấy sản phẩm mà id truyền từ props trùng với id ở data
-    const product = data.products.find((x) => x._id === props.match.params.id);
+    const product = data.products.find((x) => x.id === props.match.params.id);
 
     // nếu không có sản phẩm, trả thông báo null
     if(!product) {

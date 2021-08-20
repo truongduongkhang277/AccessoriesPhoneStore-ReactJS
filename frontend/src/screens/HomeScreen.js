@@ -1,23 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Product'
+import LoadingBox from './LoadingBox';
+import MessageBox from './MessageBox';
+import { listProducts } from './../actions/ProductAction';
 
 export default function HomeScreen() {
 
-    const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
+    const productList = useSelector((state) => state.productList);
+    const {loading, error, products} = productList;
 
     useEffect(() => {
-        // lấy sản phẩm từ link backend tạo api
-        const fecthData = async () => {
-            const { data } = await axios.get("/api/v1/products");
-            setProducts(data);
-        }
-        fecthData();
+        dispatch(listProducts());
     }, []);
 
     return (
         <div>
-            <div className="header">        
+            {/* <div className="header">        
                 <div className="container">
                     <div className="navbar">
                         <div className="logo">
@@ -46,9 +47,27 @@ export default function HomeScreen() {
                         </div>
                     </div>
                 </div>        
-            </div>
+            </div> */}
+            <div className="container">
+                <div className="navbar">
+                    <div className="logo">
+                        <a href="/"><img src="../images/logo.png" alt="Logo Store" width="125px"></img></a>
+                    </div>
+                    <nav>
+                        <ul id = "MenuItems">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="product.html">Product</a></li>
+                            <li><a href="/">About</a></li>
+                            <li><a href="/">Contact</a></li>
+                            <li><a href="account.html">Account</a></li>
+                        </ul>
+                    </nav>
+                    <a href="cart.html"><img src="../images/cart.png" alt="icon cart" className="cart-icon"></img></a>
+                    <img src="../images/menu.png" alt="icon menu" className="menu-icon" onclick="menutoggle()"></img>
+                </div>
+            </div>    
 
-            <div className="category">
+            {/* <div className="category">
                 <div className="small-container">
                     <h2 class="title">Cateogry</h2>
                     <div className="row">
@@ -63,24 +82,33 @@ export default function HomeScreen() {
                         </div>
                     </div>            
                 </div>
-            </div>
+            </div> */}
 
             <div className="small-container">
-                <h2 class="title">Feadtured Products</h2>
+                {loading ? (<LoadingBox></LoadingBox>)
+                :
+                error? (<MessageBox variant="danger">{error}</MessageBox>) 
+                :(
+                    <div>
+                        <h2 class="title">Feadtured Products</h2>
+                    
+                        <div className="row">
+                            {
+                                // từ các sản phẩm lấy được từ api, hiển thị lên trang
+                                products.map(
+                                    product => (
+                                        <Product key={product.id} product = { product }></Product>
+                                    )
+                                )
+                            }
+                        </div>
+                    </div>
+                )
+                }
                 
-                <div className="row">
-                    {
-                        // từ các sản phẩm lấy được từ api, hiển thị lên trang
-                        products.map(
-                            product => (
-                                <Product key={product._id} product = { product }></Product>
-                            )
-                        )
-                    }
-                </div>
             </div>
 
-            <div className="offer">
+            {/* <div className="offer">
                 <div className="small-container">
                     <div className="row">
                         <div className="col-2">
@@ -162,7 +190,7 @@ export default function HomeScreen() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="footer">
                 <div className="container">

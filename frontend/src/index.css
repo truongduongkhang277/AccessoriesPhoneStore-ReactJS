@@ -408,8 +408,24 @@ input:focus{
   color: #20a020;
 }
 
-.error{
+.danger{
   color: #a02020;
+}
+
+.alert{
+  padding: 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.alert-info{
+  color: #2020a0;
+  background-color: #b5b5b5;
+}
+
+.alert-error{
+  color: #a02020;
+  background-color: #b5b5b5;
 }
 
 /* -- Page Cart --*/
