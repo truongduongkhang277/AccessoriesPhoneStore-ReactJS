@@ -1,8 +1,20 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import Product from '../components/Product'
-import data from '../data'
 
 export default function HomeScreen() {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // lấy sản phẩm từ link backend tạo api
+        const fecthData = async () => {
+            const { data } = await axios.get("/api/v1/products");
+            setProducts(data);
+        }
+        fecthData();
+    }, []);
+
     return (
         <div>
             <div className="header">        
@@ -58,7 +70,8 @@ export default function HomeScreen() {
                 
                 <div className="row">
                     {
-                        data.products.map(
+                        // từ các sản phẩm lấy được từ api, hiển thị lên trang
+                        products.map(
                             product => (
                                 <Product key={product._id} product = { product }></Product>
                             )

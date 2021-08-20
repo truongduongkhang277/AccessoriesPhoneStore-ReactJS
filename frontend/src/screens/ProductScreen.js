@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import data from '../data'
 
 export default function ProductScreen(props) {
+    
     // lấy sản phẩm mà id truyền từ props trùng với id ở data
     const product = data.products.find((x) => x._id === props.match.params.id);
 
