@@ -1,11 +1,15 @@
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
-import {productListReducer} from './reducer/ProductReducer'
+import { cartReducer } from './reducer/CartReducer';
+import {productDetailsReducer, productListReducer} from './reducer/ProductReducer'
 
 const initalState = {};
+// hiển thị từ reducer
 const reducer = combineReducers ({
 
     productList: productListReducer,
+    productDetails: productDetailsReducer,
+    cart: cartReducer,
 
 })
 

@@ -1,16 +1,17 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Product'
-import LoadingBox from './LoadingBox';
-import MessageBox from './MessageBox';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 import { listProducts } from './../actions/ProductAction';
 
 export default function HomeScreen() {
 
     const dispatch = useDispatch();
+    
+    // từ giá trị file store.js, lấy reducer tương ứng
     const productList = useSelector((state) => state.productList);
-    const {loading, error, products} = productList;
+    const {loading, error, products} = productList ;
 
     useEffect(() => {
         dispatch(listProducts());
@@ -63,7 +64,7 @@ export default function HomeScreen() {
                         </ul>
                     </nav>
                     <a href="cart.html"><img src="../images/cart.png" alt="icon cart" className="cart-icon"></img></a>
-                    <img src="../images/menu.png" alt="icon menu" className="menu-icon" onclick="menutoggle()"></img>
+                    <img src="../images/menu.png" alt="icon menu" className="menu-icon"></img>
                 </div>
             </div>    
 

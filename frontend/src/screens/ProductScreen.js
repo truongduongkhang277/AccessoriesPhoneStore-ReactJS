@@ -2,18 +2,29 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Rating from '../components/Rating';
 import {Link} from 'react-router-dom';
-import data from './../data';
+import { useSelector, useDispatch } from 'react-redux';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { detailsProduct } from '../actions/ProductAction';
 
 export default function ProductScreen(props) {
-    
-    
 
-    // lấy sản phẩm mà id truyền từ props trùng với id ở data
-    const product = data.products.find((x) => x.id === props.match.params.id);
+    const dispatch = useDispatch();
+    // mỗi lần thay đổi số lượng sẽ là 1 đơn vị
+    const [qty, setQty] = useState(1);
+    // lấy id truyền vào
+    const productId = props.match.params.id;
+    // từ giá trị file store.js, lấy reducer tương ứng
+    const productDetails = useSelector(state => state.productDetails);
+    const {loading, error, product} = productDetails;
 
-    // nếu không có sản phẩm, trả thông báo null
-    if(!product) {
-        return <div>Product Not Found !!! </div>
+    useEffect(() => {
+        dispatch(detailsProduct(productId));
+    }, [dispatch, productId]);
+
+    // sự kiện thêm vào giỏ hàng
+    const addToCartHandler = () => {
+        props.history.push(`/cart/${productId}?quantity=${qty}`);
     }
 
     return (
@@ -33,58 +44,65 @@ export default function ProductScreen(props) {
                         </ul>
                     </nav>
                     <a href="cart.html"><img src="../images/cart.png" alt="icon cart" className="cart-icon"></img></a>
-                    <img src="../images/menu.png" alt="icon menu" className="menu-icon" onclick="menutoggle()"></img>
+                    <img src="../images/menu.png" alt="icon menu" className="menu-icon"></img>
                 </div>
             </div>    
-
-            <div className="small-container single-product">                
-                <Link to="/">Back to home</Link>
-                <div className="row">
-                    <div className="col-2">
-                        <img src={product.image} alt ={product.name}></img>
-                        <div className="small-img-row">
-                            <div className="small-img-col">
-                                <img src="../images/gallery-1.jpg" alt="mini image product" width="100%" className="small-img"></img>
-                            </div>
-                            <div className="small-img-col">
-                                <img src="../images/gallery-2.jpg" alt="mini image product" width="100%" className="small-img"></img>
-                            </div>
-                            <div className="small-img-col">
-                                <img src="../images/gallery-3.jpg" alt="mini image product" width="100%" className="small-img"></img>
-                            </div>
-                            <div className="small-img-col">
-                                <img src="../images/gallery-4.jpg" alt="mini image product" width="100%" className="small-img"></img>
-                            </div>
+            <div className="small-container  single-product">
+                {loading ? (<LoadingBox></LoadingBox>)
+                :
+                error? (<MessageBox variant="danger">{error}</MessageBox>) 
+                :(
+                    <div>
+                        <Link to="/">Back to home</Link>
+                    <div className="row">
+                        <div className="col-2">
+                            <img src={product.image} alt ={product.name}></img>
                         </div>
-                    </div>
-                    <div className="col-2">
-                        <p>Home / {product.category}</p>
-                        <h2>{product.name}</h2>
-                        <br/>
-                        <Rating rating ={product.rating} numReviews = {product.numReviews}></Rating>
-                        <h4>{product.price}</h4>
-                        <select>
-                            <option>Select Size</option>
-                            <option>XXL</option>
-                            <option>XL</option>
-                            <option>Large</option>
-                            <option>Medium</option>
-                            <option>Small</option>
-                        </select>
-                        <div>
-                            <h4>Status </h4>
-                            <div>{product.countInStock > 0 ? (<span classNameName="success"> In Stock </span>):(<span classNameName="error"> Unavailable </span>) }</div>
+                        <div className="col-2">
+                            <p>Trang chủ / {product.category.name}</p>
+                            <h2>{product.name}</h2>
+                            <br/>
+                            <h4>
+                                Giá: {product.price} VNĐ
+                            </h4>
+                            <div>
+                                <h4>Trạnh thái </h4>
+                                <h4>{product.countInStock > 0 ? (<span className="success"> Đang bán </span>):(<span className="error"> Hết hàng </span>) }</h4>
+                            </div>
+                            {product.countInStock>0 && (
+                                <div>                                    
+                                    <div className="row">
+                                        <h4>Số lượng</h4>
+                                        <h4>
+                                            {/* thiết lập sự kiện tăng giảm số lượng sản phẩm */}
+                                            <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                {[...Array(product.countInStock).keys()].map(
+                                                    (x) => (<option key={x + 1} value={x + 1}>
+                                                                {x + 1}
+                                                            </option>)
+                                                )}
+                                            </select>
+                                        </h4>
+                                    </div>                               
+                                    <a className="btn" onClick={addToCartHandler}>
+                                        Thêm vào giỏ hàng
+                                    </a>                                    
+                                </div>
+                            )}
+                            
+                            <h3>
+                                Chi tiết sản phẩm 
+                                <i className="fa fa-indent" aria-hidden="true"> </i>
+                            </h3>
+                            <br/>
+                            <p>{product.description}</p>
+                            <br/>
+                            <Rating rating ={product.rating} numReviews = {product.numReviews}></Rating>
                         </div>
-                        <input type="number" value="1"></input>
-                        <a href="" className="btn">Add To Cart</a>
-                        <h3>
-                            Product Details 
-                            <i className="fa fa-indent" aria-hidden="true"> </i>
-                        </h3>
-                        <br/>
-                        <p>{product.description}</p>
                     </div>
                 </div>
+                )
+                }                
             </div>
 
             <div className="small-container">
