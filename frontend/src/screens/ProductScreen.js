@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { detailsProduct } from '../actions/ProductAction';
+import Navbar from '../components/Navbar';
+import RelatedProduct from '../components/RelatedProduct';
 
 export default function ProductScreen(props) {
 
@@ -29,25 +31,8 @@ export default function ProductScreen(props) {
 
     return (
         <div>
-            <div className="container">
-                <div className="navbar">
-                    <div className="logo">
-                        <a href="/"><img src="../images/logo.png" alt="Logo Store" width="125px"></img></a>
-                    </div>
-                    <nav>
-                        <ul id = "MenuItems">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="product.html">Product</a></li>
-                            <li><a href="/">About</a></li>
-                            <li><a href="/">Contact</a></li>
-                            <li><a href="account.html">Account</a></li>
-                        </ul>
-                    </nav>
-                    <a href="cart.html"><img src="../images/cart.png" alt="icon cart" className="cart-icon"></img></a>
-                    <img src="../images/menu.png" alt="icon menu" className="menu-icon"></img>
-                </div>
-            </div>    
-            <div className="small-container  single-product">
+            <Navbar></Navbar>
+            <div className="small-container single-product">
                 {loading ? (<LoadingBox></LoadingBox>)
                 :
                 error? (<MessageBox variant="danger">{error}</MessageBox>) 
@@ -104,101 +89,8 @@ export default function ProductScreen(props) {
                 )
                 }                
             </div>
-
-            <div className="small-container">
-                <div className="row row-2">
-                    <h2>Related Products</h2>
-                    <p>View More</p>
-                </div>
-            </div>
-
-            <div className="category">
-                <div className="small-container">
-
-                    <div className="row">
-                        <div className="col-4">
-                            <img src="../images/product-9.jpg" alt="product 9 image"></img>
-                            <h4>Red Printed T-Shirt</h4>
-                            <div className="rating">
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star-half" aria-hidden="true"></i>
-                            </div>
-                            <p>100000VNĐ</p>
-                        </div>
-                        <div className="col-4">
-                            <img src="../images/product-10.jpg" alt="product 10 image"></img>
-                            <h4>Red Printed T-Shirt</h4>
-                            <div className="rating">
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star-half" aria-hidden="true"></i>
-                            </div>
-                            <p>100000VNĐ</p>
-                        </div>
-                        <div className="col-4">
-                            <img src="../images/product-11.jpg" alt="product 11 image"></img>
-                            <h4>Red Printed T-Shirt</h4>
-                            <div className="rating">
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star-half" aria-hidden="true"></i>
-                            </div>
-                            <p>100000VNĐ</p>
-                        </div>                
-                        <div className="col-4">
-                            <img src="../images/product-12.jpg" alt="product 12 image"></img>
-                            <h4>Red Printed T-Shirt</h4>
-                            <div className="rating">
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star" aria-hidden="true"></i>
-                                <i className="fa fa-star-half" aria-hidden="true"></i>
-                            </div>
-                            <p>100000VNĐ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="footer">
-                <div className="container">
-                    <div className="row">
-                        <div className="footer-col-1">
-                            <img src="../images/logo-white.png" alt="logo footer"></img>
-                            <p>Our purpose is to sustainably Make the Pleasure and Benefits of Sports Accessible to the Many</p>
-                        </div>
-                        <div className="footer-col-2">
-                            <h3>Useful Links</h3>
-                            <ul>
-                                <li>Coupons</li>
-                                <li>Return Policy</li>
-                                <li>Join Affiliate</li>
-                            </ul>
-                        </div>
-                        <div className="footer-col-3">
-                            <h3>Follow Us</h3>
-                            <ul>
-                                <li>Facebook</li>
-                                <li>Instagram</li>
-                                <li>Youtube</li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                    <hr/>
-                    <div className="create">
-                        <p>Design By Trương Dương Khang - MSSV 1811546141</p>
-                    </div>
-                </div>
-            </div>
+            <RelatedProduct></RelatedProduct>
+            
         </div>
     )
 }

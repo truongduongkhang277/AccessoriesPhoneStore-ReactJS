@@ -3,7 +3,14 @@ import thunk from 'redux-thunk';
 import { cartReducer } from './reducer/CartReducer';
 import {productDetailsReducer, productListReducer} from './reducer/ProductReducer'
 
-const initalState = {};
+const initalState = {
+    cart:{
+        // lấy giá trị sản phẩm vào thêm vào giỏ từ action
+        cartItems: localStorage.getItem('cartItems') 
+        ? JSON.parse(localStorage.getItem('cartItems')) 
+        : [],
+    }
+};
 // hiển thị từ reducer
 const reducer = combineReducers ({
 

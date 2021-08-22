@@ -29,6 +29,7 @@ nav ul{
 nav ul li{
   display: inline-block;
   margin-right: 20px;
+  font-size: 20px;
 }
 
 nav ul li a:hover{
@@ -60,14 +61,23 @@ p{
   height: 30px;
 }
 
-.cart-icon:hover{  
+/* .cart-icon:hover{  
   transform: translateY(-10px);
-}
+} */
 
 .menu-icon{
   width: 28px;
   margin-left: 20px;
   display: none;
+}
+
+.cart-items{
+  background-color: #ff523b;
+  color:#fff;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 10px;
+  margin-left: 20px;  
 }
 
 .row{
@@ -430,7 +440,7 @@ input:focus{
 
 /* -- Page Cart --*/
 .cart-page{
-  margin: 80px auto;
+  margin: 60px auto;
 }
 
 table{
@@ -444,7 +454,7 @@ table{
 }
 
 th{
-  text-align: left;
+  text-align: center;
   padding: 5px;
   color: #fff;
   background: #ff523b;
@@ -452,13 +462,19 @@ th{
 }
 
 td{
+  text-align: center;
   padding: 10px 5px;
 }
 
-td input{
-  width: 40px;
-  height: 30px;
+td select{
+  width: 60px;
+  height: 40px;
   padding: 5px;
+  border-radius: 10px;
+}
+
+td p {
+  font-size: 16px;
 }
 
 td a{
@@ -568,6 +584,33 @@ form a{
   height: 3px;
   margin-top: 8px;
   transform: translateX(100px);
+}
+
+
+button {
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px #a4a4a4 solid;
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+button:hover {
+  border: 2px #404040 solid;
+}
+button.primary {
+  background-color: #f0c040;
+}
+button.block {
+  width: 100%;
+}
+button.small {
+  font-size: 10px;
 }
 
 /* -- media query for menu -- */
