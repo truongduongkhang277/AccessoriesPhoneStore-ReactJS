@@ -53,7 +53,7 @@ public class UserController {
     }
 
     // đăng nhập
-    @PostMapping("/signin/{email}/{password}")
+    @PostMapping("/signin")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email,@PathVariable String password){
         // tìm khách hàng bằng email nếu không có trả về rỗng
         User user = userRepository.findByEmail(email);

@@ -1,16 +1,20 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import Navbar from './../components/Navbar';
-import Header from './../components/Header';
+import { useDispatch } from 'react-redux';
+import { signin } from './../actions/UserAction';
 
 export default function SigninScreen() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const dispatch = useDispatch();
+
     // singin action
     const submitSigninHandler = (e) => {
         e.preventDefault();
+        dispatch(signin(email, password));
     }
 
     return (
