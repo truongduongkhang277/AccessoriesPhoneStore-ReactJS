@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -6,7 +7,7 @@ export default function Footer() {
             <div className="container">
                 <div className="row">
                     <div className="footer-col-1">
-                        <img src="../images/logo-white.png" alt="logo footer"></img>
+                        <Link to="/"><img src="../images/logo-white.png" alt="logo footer"></img></Link>
                         <p>Our purpose is to sustainably Make the Pleasure and Benefits of Sports Accessible to the Many</p>
                     </div>
                     <div className="footer-col-2">

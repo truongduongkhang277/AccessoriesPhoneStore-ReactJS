@@ -4,7 +4,8 @@ import ProductScreen from './screens/ProductScreen';
 import HomeScreen from './screens/HomeScreen';
 import CartScreen from './screens/CartScreen';
 import Footer from './components/Footer';
-import Brand from './components/Brand';
+import SigninScreen from './screens/SigninScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <Route path = "/" component={HomeScreen} exact></Route>
         <Route path = "/product/:id" component={ProductScreen} exact></Route>
         <Route path = "/cart/:id" component={CartScreen} exact></Route>
+        <Route path = "/cart" component={CartScreen} exact></Route>
+        <Route path = "/signin" component={SigninScreen} exact></Route>
+        <Route path = "/register" component={RegisterScreen} exact></Route>
         <Footer></Footer>
     </BrowserRouter>
   );

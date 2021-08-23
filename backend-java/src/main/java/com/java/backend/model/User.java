@@ -88,4 +88,5 @@ public class User {
     public void setIsSeller(boolean isSeller){
         this.isSeller = isSeller;
     }
+
 }

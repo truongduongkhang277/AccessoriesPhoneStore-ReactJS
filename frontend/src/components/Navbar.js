@@ -8,6 +8,10 @@ export default function Navbar() {
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
 
+    const menutoggle = () => {
+        
+    };
+
     return (
         <div className="navbar">
             <div className="logo">
@@ -19,7 +23,7 @@ export default function Navbar() {
                     <li><Link to="product.html">Product</Link></li>
                     <li><Link to="/">About</Link></li>
                     <li><Link to="/">Contact</Link></li>
-                    <li><Link to="account.html">Account</Link></li>
+                    <li><Link to="/signin">Account</Link></li>
                 </ul>
             </nav>
             <Link to="/cart">
@@ -32,7 +36,7 @@ export default function Navbar() {
                     
                 </div>
             </Link>
-            <img src="../images/menu.png" alt="icon menu" className="menu-icon"></img>
+            <img src="../images/menu.png" alt="icon menu" className="menu-icon" onClick={menutoggle}></img>
         </div>
     )
 }

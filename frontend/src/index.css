@@ -13,7 +13,7 @@ body{
 .navbar{
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 nav{
@@ -509,13 +509,13 @@ th:last-child{
 
 /* -- Account page -- */
 .account-page{
-  padding: 50px 0 ;
+  padding: 10px 0 ;
   background: radial-gradient(#fff,#ffd6d6);
 }
 
 .form-container{
   background: #fff;
-  width: 300px;
+  width: 350px;
   height: 400px;
   position: relative;
   text-align: center;
@@ -565,8 +565,12 @@ form .btn:focus{
   outline: none;
 }
 
-form a{
-  font-size: 12px;
+form a, p{
+  font-size: 13px;
+}
+
+form a:hover{
+  color: #ff523b;
 }
 
 #LoginForm {
@@ -583,7 +587,6 @@ form a{
   background: #ff523b;
   height: 3px;
   margin-top: 8px;
-  transform: translateX(100px);
 }
 
 

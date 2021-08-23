@@ -27,11 +27,11 @@ export default function CartScreen(props) {
     // tạo phương thức xóa sản phẩm khỏi giỏ hàng
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id));
-      };
+    };
     
-      const checkoutHandler = () => {
+    const checkoutHandler = () => {
         props.history.push('/signin?redirect=shipping');
-      };
+    };
 
     return (
         <div>
